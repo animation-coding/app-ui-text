@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Neumorphism on any background</title>
+<style>
+html {
+  --bg: #efe8de;
+  --base: #222;
+  --radius: 100px;
+  background: var(--bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*:focus,
+*::before:focus,
+*::after:focus {
+  outline: none;
+}
+
+body {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: var(--bg);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  padding: 10vw;
+}
+
+h1 {
+  font-family: termina, sans-serif;
+  text-transform: lowercase;
+  color: var(--base);
+  font-size: calc(4vw + 1rem);
+  line-height: 1;
+  margin-right: auto;
+  max-width: 600px;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: flex;
+  margin-top: 2rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+}
+
+button {
+  color: var(--base);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background: var(--bg);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  font-family: termina, sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  position: relative;
+  border-radius: var(--radius);
+  z-index: 1;
+  margin-right: 1rem;
+  cursor: pointer;
+  outline: none;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+button:hover.main span {
+  color: #fff;
+  mix-blend-mode: difference;
+}
+button:hover.alt span {
+  mix-blend-mode: difference;
+  color: white;
+}
+button.main {
+  background: var(--base);
+  color: var(--bg);
+}
+button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  z-index: 2;
+  box-shadow: -5px -6px 10px var(--bg);
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  pointer-events: none;
+}
+button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  z-index: 2;
+  box-shadow: 5px 10px 15px var(--bg);
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  pointer-events: none;
+}
+button:active.alt::after {
+  box-shadow: inset 4px 4px 8px var(--bg);
+}
+button:active.alt::before {
+  box-shadow: inset -2px -2px 8px var(--bg);
+}
+button:active.main::after {
+  box-shadow: 2px 5px 6px var(--bg);
+}
+button:active.main::before {
+  box-shadow: inset -2px -2px 8px var(--base);
+}
+
+</style>   
+</head>
+<body>
+
+  <h1>
+    Neumorphism on any background.
+  </h1>
+  <div class="buttons">
+    <button class='main'>
+      <span>Hello</span>
+    </button>
+    <button class='alt'>
+      <span>Hello</span>
+    </button>
+  </div>
+
+  <script>console.clear();
+
+let colors = ["#c1948a", "#222", "#afa98a", "#f7cfc0", "#373d54", "#efe8de"],
+  buttons = Array.from(document.querySelectorAll("button")),
+  body = document.body;
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("active");
+    color = colors.shift();
+    colors.push(color);
+    let textColor = getCorrectTextColor(color);
+    let highlightColor;
+    if (textColor == "#222") {
+      highlightColor = "#fff";
+    } else {
+      highlightColor = "#fff";
+    }
+    document.documentElement.style.setProperty("--bg", color);
+    document.documentElement.style.setProperty("--base", textColor);
+    document.documentElement.style.setProperty("--highlight", highlightColor);
+  });
+});
+
+function getCorrectTextColor(hex) {
+  threshold = 130; /* about half of 256. Lower threshold equals more dark text on dark background  */
+
+  hRed = hexToR(hex);
+  hGreen = hexToG(hex);
+  hBlue = hexToB(hex);
+
+  function hexToR(h) {
+    return parseInt(cutHex(h).substring(0, 2), 16);
+  }
+  function hexToG(h) {
+    return parseInt(cutHex(h).substring(2, 4), 16);
+  }
+  function hexToB(h) {
+    return parseInt(cutHex(h).substring(4, 6), 16);
+  }
+  function cutHex(h) {
+    return h.charAt(0) == "#" ? h.substring(1, 7) : h;
+  }
+
+  cBrightness = (hRed * 299 + hGreen * 587 + hBlue * 114) / 1000;
+  if (cBrightness > threshold) {
+    return "#222";
+  } else {
+    return "#f9f2ec";
+  }
+}
+</script> 
+</body>
+</html>

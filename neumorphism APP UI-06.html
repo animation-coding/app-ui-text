@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>neumorphism UI App</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik&amp;display=swap">
+<style>
+body {
+  background-color: #EBECF0;
+  font-size: 12px;
+}
+
+.themed-block:first-of-type {
+  --back-color: #EBECF0;
+  --text-color: #A2B1CA;
+  --title-color: #6C7A92;
+  --shadow-color: 0, 0, 0;
+  --light-color: 255, 255, 255;
+  --border-active-color: #EEE;
+  --main-action-left: #779DFF;
+  --main-action-right: #9EB8FF;
+  background-color: #ddd;
+}
+
+.themed-block:nth-of-type(2) {
+  --back-color: #2E3237;
+  --text-color: #707174;
+  --title-color: #A7A9AA;
+  --shadow-color: 0, 0, 0;
+  --light-color: 80, 80, 80;
+  --border-active-color: #444;
+  --main-action-left: #D43C0B;
+  --main-action-right: #BF8A10;
+  background-color: #26282B;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.neumorphic-btn {
+  padding: 10px 15px;
+  border-radius: 25px;
+  background-color: var(--back-color);
+  border: 2px solid var(--back-color);
+  box-shadow: 7px 7px 15px 0px rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 0px 0px 0px 0px rgba(var(--shadow-color), 0), inset 0px 0px 0px 0px rgba(var(--light-color), 0);
+  transition: all .25s ease;
+  color: var(--text-color);
+  font-size: 12px;
+  text-shadow: 0px 0px 2px rgba(var(--text-color), 0);
+}
+
+.neumorphic-btn:focus {
+  box-shadow: 7px 7px 15px 0px rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 0px 0px 0px 0px rgba(var(--shadow-color), 0), inset 0px 0px 0px 0px rgba(var(--light-color), 0);
+  text-shadow: 0px 0px 2px rgba(var(--text-color), 0);
+}
+
+.neumorphic-btn:active {  
+  box-shadow: 7px 7px 15px 0px rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 4px 4px 8px 0px rgba(var(--shadow-color), .3), inset -4px -4px 8px 0px rgba(var(--light-color), 1) !important;
+  border: 2px solid var(--border-active-color);
+  text-shadow: 0px 0px 2px rgba(var(--text-color), .3);
+}
+
+.neumorphic-btn_primary {
+  background: linear-gradient(135deg, var(--main-action-left), var(--main-action-right));
+  color: #E0E0E0;
+}
+
+.neumorphic-btn_primary:active {
+  box-shadow: 7px 7px 15px 0px rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 4px 4px 20px 0px rgba(0, 0, 0, .3) !important;
+}
+.neumorphic-btn_fab {    
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.neumorphic-card {
+    background-color: #ddd;
+    box-shadow: 0 0 6px 6px #dddddd, 12px 12px 16px 8px rgba(136, 136, 136, 0.7), -12px -12px 16px 8px rgba(244, 244, 244, 0.7);
+  padding: 25px;
+  border-radius: 35px;
+  width: max-content;
+}
+.neumorphic-card-black
+{
+  background-color: #26282B;
+        box-shadow: 0 0 6px 6px #26282B, 12px 12px 16px 8px rgba(2, 2, 2, 0.7), -12px -12px 16px 8px rgba(27, 27, 27, 0.7);
+  padding: 25px;
+  border-radius: 35px;
+  width: max-content;
+  
+}
+.neumorphic-text {
+  color: var(--text-color);
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+}
+
+.neumorphic-text_title {
+  font-size: 20px;
+  color: var(--title-color);
+}
+
+.neumorphic-card__body {
+  padding: 15px 0;
+}
+
+.neumorphic-image-wrapper {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 5px solid var(--back-color);
+  box-shadow: 7px 7px 15px 5px rgba(var(--shadow-color), .3), -4px -4px 5px 7px rgba(var(--light-color), 1);
+}
+
+
+
+
+
+
+.neumorphic-slider {
+  width: 400px;
+  max-width: 100%;
+  height: 30px;
+  position: relative;
+}
+
+.neumorphic-slider__back {
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  border: none;
+  position: absolute;
+  bottom: 10px;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 3px -2px rgba(var(--shadow-color), .3), inset -2px -2px 3px 0px rgba(var(--light-color), .5);
+}
+
+.neumorphic-slider__line {
+  height: 6px;
+  width: 40%;
+  border-radius: 3px;
+  left: 0;
+  position: absolute;
+  bottom: 9px;
+  background: linear-gradient(90deg, var(--main-action-left), var(--main-action-right));
+  cursor: pointer;
+}
+
+.neumorphic-slider__thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-left: -15px;
+  background-color: var(--back-color);
+  position: absolute;
+  bottom: -2.4px;
+  left: 40%;
+  z-index: 1;
+  cursor: pointer;    
+  box-shadow: 4px 4px 5px -2px rgba(var(--shadow-color), .5), -4px -4px 5px 0px rgba(var(--light-color), .4);
+}
+
+.neumorphic-slider__thumb::after {
+  content: '';
+  display: block;
+  background-color: var(--main-action-right);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;    
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 2px 2px 6px 0px rgba(var(--shadow-color), .3);
+}
+
+.neumorphic-slider_moving {
+  cursor: pointer;
+}
+
+
+
+.neumorphic-slider__text {
+  color: var(--text-color);
+  font-family: 'Rubik', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.neumorphic-slider__text_left {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+
+.neumorphic-slider__text_right {
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+}
+
+.player-controls .btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 7px 7px 15px 0px rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset -1px -1px 2px 0px rgba(var(--shadow-color), .3), inset 1px 1px 2px 0px rgba(var(--light-color), 1);
+}   
+</style>  
+
+</head>
+<body>
+  <div class="row" style="max-width: 100vw;min-height: 100vh; margin: 0;">
+    <div class="themed-block col-12 col-lg-6 py-5">
+      <div class="neumorphic-card d-flex flex-column mx-auto" style="width: 350px; max-width: 100vw;">
+        <div class="d-flex">
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab"><i class="fa fa-arrow-left"></i></button>
+          <div class="neumorphic-text flex-grow-1 my-auto text-center">PLAYING NOW</div>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab"><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="neumorphic-card__body">
+          <div class="neumorphic-image-wrapper">
+            <image src="https://images.pexels.com/photos/251603/pexels-photo-251603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;"/>
+          </div>
+          <div class="neumorphic-text neumorphic-text_title text-center mt-5">Song name</div>
+          <div class="neumorphic-text text-center mt-1 mb-5">Band or singer name</div>
+          <div class="neumorphic-slider mx-auto" onselectstart="return false">
+            <div class="neumorphic-slider__text neumorphic-slider__text_left">1:36</div>
+            <div class="neumorphic-slider__back"></div>
+            <div class="neumorphic-slider__line"></div>
+            <div class="neumorphic-slider__thumb"></div>
+            <div class="neumorphic-slider__text neumorphic-slider__text_right">4:00</div>
+          </div>
+          <div class="mt-5 mb-3 d-flex w-100 player-controls">
+            <button type="button" class="btn neumorphic-btn neumorphic-btn_fab mx-auto"><i class="fa fa-backward"></i></button>
+            <button type="button" class="btn neumorphic-btn neumorphic-btn_fab neumorphic-btn_primary mx-auto"><i class="fa fa-pause"></i></button>
+            <button type="button" class="btn neumorphic-btn neumorphic-btn_fab mx-auto"><i class="fa fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="themed-block col-12 col-lg-6 py-5">
+      <div class="neumorphic-card-black d-flex flex-column mx-auto" style="width: 350px; max-width: 100vw;">
+        <div class="d-flex">
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab"><i class="fa fa-arrow-left"></i></button>
+          <div class="neumorphic-text flex-grow-1 my-auto text-center">PLAYING NOW</div>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab"><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="neumorphic-card__body">
+          <div class="neumorphic-image-wrapper">
+            <image src="https://images.pexels.com/photos/333850/pexels-photo-333850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;"/>
+          </div>          
+          <div class="neumorphic-text neumorphic-text_title text-center mt-5">Song name</div>
+          <div class="neumorphic-text text-center mt-1 mb-5">Band or singer name</div>
+          <div class="neumorphic-slider mx-auto" onselectstart="return false">
+            <div class="neumorphic-slider__text neumorphic-slider__text_left">1:36</div>
+            <div class="neumorphic-slider__back"></div>
+            <div class="neumorphic-slider__line"></div>
+            <div class="neumorphic-slider__thumb"></div>
+            <div class="neumorphic-slider__text neumorphic-slider__text_right">4:00</div>
+          </div>
+          <div class="mt-5 mb-3 d-flex w-100 player-controls">
+            <button type="button" class="btn neumorphic-btn neumorphic-btn_fab mx-auto"><i class="fa fa-backward"></i></button>
+            <button type="button" class="btn neumorphic-btn neumorphic-btn_fab neumorphic-btn_primary mx-auto"><i class="fa fa-pause"></i></button>
+            <button type="button" class="btn neumorphic-btn neumorphic-btn_fab mx-auto"><i class="fa fa-forward"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js"></script>
+<script>
+var max_value = 240;
+$('.neumorphic-slider__thumb, .neumorphic-slider__back, .neumorphic-slider__line').on('mousedown', function(e){
+  var self = $(this);
+  give_new_value(e.clientX, self);
+  self.closest('.neumorphic-slider').addClass('neumorphic-slider_moving');
+  $(document).on('mousemove.mm', function(e){
+    give_new_value(e.clientX, self);
+  });
+  $(document).on('mouseup.mu', function(){
+    $(document).off('mousemove.mm');
+    self.closest('.neumorphic-slider').find('.neumorphic-slider__thumb').off('mouseup.mu');
+    self.closest('.neumorphic-slider').removeClass('neumorphic-slider_moving');
+  });
+});
+
+function give_new_value_input(input, value) {
+  $(input).find('.neumorphic-slider__popover').text(value).css('left', value);
+  $(input).find('.neumorphic-slider__line').width(value);
+  $(input).find('.neumorphic-slider__thumb').css('left', value);
+}
+
+function give_new_value(x, self) {
+  var new_value = 0;
+  var timed_value = 0;
+  if (x - 6 < self.closest('.neumorphic-slider').offset().left) {
+    new_value = '0%';
+    timed_value = 0;
+  } else if (x - 6 > self.closest('.neumorphic-slider').offset().left + $('.neumorphic-slider').width() - 10) {
+    new_value = '100%';
+    timed_value = max_value;
+  } else {
+    new_value = ((x - 6 - self.closest('.neumorphic-slider').offset().left) / ($('.neumorphic-slider').width() - 10) * 100) + '%';
+    timed_value = ((x - 6 - self.closest('.neumorphic-slider').offset().left) / ($('.neumorphic-slider').width() - 10) * max_value).toFixed(0);
+  }
+  give_new_value_input($(self).closest('.neumorphic-slider'), new_value);
+  document.documentElement.style.setProperty('--value', new_value);
+  var minutes = (timed_value - timed_value % 60) / 60;
+  var seconds = (timed_value % 60).toFixed(0);
+  seconds = ('0' + seconds).slice(-2);
+  timed_value = minutes + ':' + seconds;
+  self.closest('.neumorphic-slider').find('.neumorphic-slider__text_left').text(timed_value);  
+}
+
+$('.neumorphic-slider__thumb, .neumorphic-slider__back, .neumorphic-slider__line').on('touchstart', function(e){
+  var self = $(this);
+  give_new_value(e.originalEvent.touches[0].pageX, self);
+  $(self).closest('.neumorphic-slider').addClass('neumorphic-slider_moving');
+  $(document).on('touchmove.tm', function(e){
+    give_new_value(e.originalEvent.touches[0].pageX, self);
+  });
+  $(document).on('touchend.te', function(){
+    $(document).off('touchmove.tm');
+    $('.neumorphic-slider__thumb').off('touchend.te');
+    $(self).closest('.neumorphic-slider').removeClass('neumorphic-slider_moving');
+  });
+});    
+</script>  
+</body>
+
+</html>
